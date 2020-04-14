@@ -2,7 +2,8 @@
 #include "SDL.h"
 #include <stdlib.h>
 #include <iostream>
-#include "Timer.h"
+#include "timer.h"
+
 using namespace std;
 
 typedef unsigned long long uint64;
@@ -68,7 +69,7 @@ int main(int argc, char* argv[]) {
 
     Timer timer;
 
-    uint64 start = timer.StartTimer();
+    timer.StartTimer();
 
     Create();
 
@@ -111,13 +112,13 @@ int main(int argc, char* argv[]) {
 
         SDL_RenderPresent(renderer);
 
-        uint64 end = timer.QueryCounter();
+        timer.QueryCounter();
 
         uint64 deltaSeconds = timer.DeltaTimeS();
 
         if (deltaSeconds > 5.0f) {
             cout << "5 seconds elapsed" << endl;
-            start = end;
+            timer.StartTimer();
         }
     }
 
